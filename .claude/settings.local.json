@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(chmod:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJpYXQiOjE3NzA3Mzk1NzcsImV4cCI6MTc3MzMzMTU3N30.mo3hyD3lR8WChKgoGN5V9CMy3Oyx6CpmaySmZFdSAGA\")"
+    ]
+  }
+}

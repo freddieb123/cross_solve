@@ -1,0 +1,57 @@
+.letter-revealer {
+  flex: 1;
+}
+
+.letter-revealer h4 {
+  margin-bottom: 0.75rem;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.letter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.letter-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-button:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+  transform: scale(1.1);
+}
+
+.letter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.letter-button.revealed {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+@media (max-width: 768px) {
+  .letter-button {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+}

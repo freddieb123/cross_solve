@@ -13,7 +13,6 @@ export default function ClueDisplay({ puzzleType, loadedClue, onClueChange }) {
   const [error, setError] = useState(null);
   const [hint, setHint] = useState(null);
   const [showHint, setShowHint] = useState(false);
-  const [answer, setAnswer] = useState('');
   const [lettersRevealedCount, setLettersRevealedCount] = useState(0);
   const [savedNotification, setSavedNotification] = useState(false);
 
@@ -34,6 +33,7 @@ export default function ClueDisplay({ puzzleType, loadedClue, onClueChange }) {
     } else {
       loadClue();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzleType, loadedClue]);
 
   async function loadClue() {
@@ -46,7 +46,6 @@ export default function ClueDisplay({ puzzleType, loadedClue, onClueChange }) {
       setResult(null);
       setShowHint(false);
       setHint(null);
-      setAnswer('');
       setLettersRevealedCount(0);
       setSavedNotification(false);
 
@@ -245,7 +244,6 @@ export default function ClueDisplay({ puzzleType, loadedClue, onClueChange }) {
 
         <div className="answer-grid">
           {userInput.map((letter, index) => {
-            const isSpace = clue.answerLength > index && index < clue.answerLength;
             const displayLetter = revealedLetters[index] || letter;
 
             return (

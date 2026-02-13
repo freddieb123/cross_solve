@@ -46,3 +46,16 @@ CREATE TABLE saved_clues (
 );
 
 CREATE INDEX IF NOT EXISTS idx_saved_clues_user ON saved_clues(user_id);
+
+-- Clues table with crossword puzzle clues
+CREATE TABLE IF NOT EXISTS clues (
+  rowid INTEGER PRIMARY KEY,
+  puzzle_name VARCHAR(255),
+  puzzle_date VARCHAR(50),
+  clue TEXT,
+  answer VARCHAR(255),
+  definition TEXT,
+  source_url VARCHAR(500)
+);
+
+CREATE INDEX IF NOT EXISTS idx_clues_puzzle_name ON clues(puzzle_name);

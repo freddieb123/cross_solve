@@ -68,28 +68,54 @@ async function loadClues() {
 
     console.log(`Parsed ${records.length} records from CSV`);
 
-    // Insert clues (using INSERT OR IGNORE for sqlite compatibility)
+    // Insert clues in batches of 100 to avoid connection timeouts
     let inserted = 0;
-    for (const record of records) {
+    const batchSize = 100;
+
+    for (let i = 0; i < records.length; i += batchSize) {
+      const batch = records.slice(i, i + batchSize);
+
       try {
-        await pool.query(
-          `INSERT INTO clues (rowid, puzzle_name, puzzle_date, clue, answer, definition, source_url)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)
-           ON CONFLICT DO NOTHING`,
-          [
-            record.rowid || null,
-            record.puzzle_name || '',
-            record.puzzle_date || '',
-            record.clue || '',
-            record.answer || '',
-            record.definition || '',
-            record.source_url || '',
-          ]
-        );
-        inserted++;
+        const client = await pool.connect();
+        try {
+          await client.query('BEGIN');
+
+          for (const record of batch) {
+            try {
+              await client.query(
+                `INSERT INTO clues (rowid, puzzle_name, puzzle_date, clue, answer, definition, source_url)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)
+                 ON CONFLICT (rowid) DO NOTHING`,
+                [
+                  record.rowid || null,
+                  record.puzzle_name || '',
+                  record.puzzle_date || '',
+                  record.clue || '',
+                  record.answer || '',
+                  record.definition || '',
+                  record.source_url || '',
+                ]
+              );
+              inserted++;
+            } catch (err) {
+              console.error(`Error inserting record ${record.rowid}:`, err.message);
+            }
+          }
+
+          await client.query('COMMIT');
+          console.log(`Batch ${Math.floor(i / batchSize) + 1}: Inserted ${batch.length} records (total: ${inserted}/${records.length})`);
+        } catch (err) {
+          await client.query('ROLLBACK');
+          throw err;
+        } finally {
+          client.release();
+        }
       } catch (err) {
-        console.error('Error inserting record:', record, err.message);
+        console.error(`Error processing batch at index ${i}:`, err.message);
       }
+
+      // Small delay between batches to avoid overwhelming the connection
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     console.log(`✓ Successfully inserted ${inserted} clues into database`);

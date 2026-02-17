@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { register } from '../utils/api';
-import '../styles/Auth.css';
 
 export default function Register({ onRegisterSuccess, onSwitchToLogin }) {
   const [email, setEmail] = useState('');
@@ -51,70 +50,108 @@ export default function Register({ onRegisterSuccess, onSwitchToLogin }) {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <h1>Daily Cryptic Trainer</h1>
-        <p className="auth-subtitle">Create Account</p>
+    <div className="w-full max-w-md min-h-screen mx-auto bg-newsprint border-x border-stone/20 shadow-2xl shadow-stone/10 flex flex-col items-center justify-center px-6 py-8">
+      {/* Masthead */}
+      <header className="text-center mb-12 pb-8 border-b border-ink/20 w-full">
+        <h1 className="font-display italic font-bold text-4xl mb-2 text-ink">
+          The Sunday Edition
+        </h1>
+        <p className="font-sans text-xs font-semibold tracking-[0.2em] text-stone uppercase">Create Account</p>
+      </header>
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-group">
-            <label>Email</label>
+      {/* Register Form */}
+      <div className="w-full max-w-sm">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Email Field */}
+          <div className="flex flex-col gap-2">
+            <label className="font-sans font-semibold text-xs tracking-widest text-ink uppercase">
+              Email Address
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="your@email.com"
               disabled={loading}
               autoComplete="email"
+              className="font-serif text-ink bg-paper border border-ink/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ink/50 focus:border-transparent disabled:opacity-50"
             />
           </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <div className="password-input">
+          {/* Password Field */}
+          <div className="flex flex-col gap-2">
+            <label className="font-sans font-semibold text-xs tracking-widest text-ink uppercase">
+              Password
+            </label>
+            <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Create a password (6+ characters)"
+                placeholder="6+ characters"
                 disabled={loading}
                 autoComplete="new-password"
+                className="w-full font-serif text-ink bg-paper border border-ink/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ink/50 focus:border-transparent disabled:opacity-50"
               />
               <button
                 type="button"
-                className="password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={loading}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone hover:text-ink transition-colors disabled:opacity-50"
               >
                 {showPassword ? '👁️' : '👁️‍🗨️'}
               </button>
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Confirm Password</label>
+          {/* Confirm Password Field */}
+          <div className="flex flex-col gap-2">
+            <label className="font-sans font-semibold text-xs tracking-widest text-ink uppercase">
+              Confirm Password
+            </label>
             <input
               type={showPassword ? 'text' : 'password'}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
+              placeholder="Repeat password"
               disabled={loading}
               autoComplete="new-password"
+              className="font-serif text-ink bg-paper border border-ink/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ink/50 focus:border-transparent disabled:opacity-50"
             />
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+          {/* Error Message */}
+          {error && (
+            <div className="bg-crimson/10 border border-crimson text-crimson px-4 py-3 font-serif text-sm">
+              {error}
+            </div>
+          )}
 
-          <button type="submit" className="auth-button" disabled={loading}>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-ink text-newsprint font-sans font-bold text-sm tracking-widest uppercase py-4 hover:bg-ink/90 transition-colors border border-ink focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ink disabled:opacity-50 mt-4"
+          >
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
-        <div className="auth-footer">
-          Already have an account? <a href="#login" onClick={(e) => {
-            e.preventDefault();
-            onSwitchToLogin();
-          }}>Sign in</a>
+        {/* Login Link */}
+        <div className="text-center mt-8 pt-8 border-t border-ink/20">
+          <p className="font-serif text-stone text-sm">
+            Already have an account?{' '}
+            <a
+              href="#login"
+              onClick={(e) => {
+                e.preventDefault();
+                onSwitchToLogin();
+              }}
+              className="text-navy font-bold hover:text-crimson transition-colors border-b border-navy hover:border-crimson"
+            >
+              Sign in
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -62,11 +62,6 @@ function App() {
     setActiveTab('edition');
   };
 
-  const handleChangeType = () => {
-    setShowTypeSelector(true);
-    setSelectedType(null);
-  };
-
   const handleLoadSavedClue = (clue) => {
     setLoadedClue(clue);
     setShowTypeSelector(false);

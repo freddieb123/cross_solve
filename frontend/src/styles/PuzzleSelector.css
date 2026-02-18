@@ -1,44 +1,51 @@
 .puzzle-selector {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  padding: 0;
+  border-radius: 0px;
+  box-shadow: none;
 }
 
 .puzzle-selector h2 {
-  color: #333;
+  color: #1A1A1A;
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 .button-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
 }
 
 .puzzle-button {
   padding: 1rem 1.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  color: #333;
+  border: 1px solid #1A1A1A;
+  border-radius: 0px;
+  background: #F4F1EA;
+  color: #1A1A1A;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: "Libre Franklin", sans-serif;
 }
 
 .puzzle-button:hover {
-  border-color: #667eea;
-  color: #667eea;
-  background: #f8f9ff;
+  border-color: #1A1A1A;
+  color: #F4F1EA;
+  background: #1A1A1A;
 }
 
 .puzzle-button.active {
-  background: #667eea;
-  color: white;
-  border-color: #667eea;
+  background: #1A1A1A;
+  color: #F4F1EA;
+  border-color: #1A1A1A;
 }
 
 .puzzle-selector.error {

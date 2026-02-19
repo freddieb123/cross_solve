@@ -1,0 +1,251 @@
+.abbrev-quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Top row: back + score ── */
+.abbrev-toprow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.abbrev-back {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #787672;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.abbrev-back:hover {
+  color: #1A1A1A;
+}
+
+.abbrev-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.05rem;
+}
+
+.abbrev-score-num {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #1A1A1A;
+}
+
+.abbrev-score-label {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #787672;
+}
+
+/* ── Divider ── */
+.abbrev-divider {
+  height: 1px;
+  background: #D0CBC1;
+  margin: 0.25rem 0;
+}
+
+/* ── Question area ── */
+.abbrev-question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid #1A1A1A;
+  background: #F4F1EA;
+}
+
+.abbrev-prompt {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #787672;
+  margin: 0;
+}
+
+.abbrev-word {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #1A1A1A;
+  text-align: center;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.abbrev-count {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #787672;
+  margin: 0;
+  border-top: 1px solid #D0CBC1;
+  padding-top: 0.6rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── Inputs ── */
+.abbrev-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.abbrev-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  border: 1px solid #1A1A1A;
+  border-radius: 0;
+  background: #EBE7DE;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+  color: #1A1A1A;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  -webkit-appearance: none;
+}
+
+.abbrev-input:focus {
+  border-color: #1B3B6F;
+  border-width: 2px;
+  background: #fff;
+}
+
+/* ── Submit button ── */
+.abbrev-submit {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  margin-top: 0.25rem;
+  background: #1A1A1A;
+  color: #F4F1EA;
+  border: 1px solid #1A1A1A;
+  border-radius: 0;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.abbrev-submit:hover:not(:disabled) {
+  background: #F4F1EA;
+  color: #1A1A1A;
+}
+
+.abbrev-submit:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Result ── */
+.abbrev-result {
+  padding: 1.25rem;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.abbrev-result--correct {
+  border-color: #2e7d32;
+  background: #f0faf1;
+}
+
+.abbrev-result--wrong {
+  border-color: #8B2635;
+  background: #fdf0f2;
+}
+
+.abbrev-verdict {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.abbrev-result--correct .abbrev-verdict {
+  color: #2e7d32;
+}
+
+.abbrev-result--wrong .abbrev-verdict {
+  color: #8B2635;
+}
+
+.abbrev-detail {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.78rem;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.abbrev-answer strong {
+  font-family: "Fira Code", monospace;
+  font-size: 0.9rem;
+  color: #8B2635;
+}
+
+/* ── Next button ── */
+.abbrev-next {
+  align-self: stretch;
+  padding: 0.75rem 1.5rem;
+  margin-top: 0.25rem;
+  background: #F4F1EA;
+  color: #1A1A1A;
+  border: 1px solid #1A1A1A;
+  border-radius: 0;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  width: 100%;
+}
+
+.abbrev-next:hover {
+  background: #1A1A1A;
+  color: #F4F1EA;
+}
+
+/* ── Loading / Error ── */
+.abbrev-loading,
+.abbrev-error {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 2rem 0;
+  color: #787672;
+}
+
+.abbrev-error {
+  color: #8B2635;
+}

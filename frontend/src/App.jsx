@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PuzzleSelector from './components/PuzzleSelector';
 import ClueDisplay from './components/ClueDisplay';
+import AbbreviationQuiz from './components/AbbreviationQuiz';
 import StatsModal from './components/StatsModal';
 import SavedCluesModal from './components/SavedCluesModal';
 import Login from './components/Login';
@@ -18,6 +19,7 @@ function App() {
   const [showSavedCluesModal, setShowSavedCluesModal] = useState(false);
   const [loadedClue, setLoadedClue] = useState(null);
   const [activeTab, setActiveTab] = useState('edition');
+  const [showAbbrevQuiz, setShowAbbrevQuiz] = useState(false);
 
   // Check if user is logged in on mount
   useEffect(() => {
@@ -52,7 +54,18 @@ function App() {
     setUser(null);
     setSelectedType(null);
     setShowTypeSelector(true);
+    setShowAbbrevQuiz(false);
     setActiveTab('edition');
+  };
+
+  const handleAbbrevQuiz = () => {
+    setShowAbbrevQuiz(true);
+    setShowTypeSelector(false);
+  };
+
+  const handleAbbrevQuizBack = () => {
+    setShowAbbrevQuiz(false);
+    setShowTypeSelector(true);
   };
 
   const handlePuzzleSelect = (type) => {
@@ -115,7 +128,7 @@ function App() {
 
         {/* Main Content */}
         <main className="flex-1 px-5 pb-24 flex flex-col gap-8">
-          <PuzzleSelector onSelect={handlePuzzleSelect} selectedType={selectedType} />
+          <PuzzleSelector onSelect={handlePuzzleSelect} selectedType={selectedType} onAbbrevQuiz={handleAbbrevQuiz} />
         </main>
 
         {/* Bottom Navigation */}
@@ -179,7 +192,87 @@ function App() {
     );
   }
 
-  // Screen 3: Clue Solving
+  // Screen 3: Abbreviation Quiz
+  if (showAbbrevQuiz) {
+    return (
+      <div className="app">
+        {/* Masthead */}
+        <header className="pt-8 px-6 pb-4 text-center border-double-b mb-8">
+          <h1 className="font-display italic font-bold text-4xl mb-3 tracking-tight leading-none text-ink">
+            The Sunday Edition
+          </h1>
+          <div className="flex items-center justify-center gap-4 text-xs font-sans font-semibold tracking-[0.2em] text-stone uppercase border-t border-ink pt-3 mt-1">
+            <span>Vol. No. 1</span>
+            <span className="text-crimson text-[10px]">•</span>
+            <span>Abbreviations</span>
+            <span className="text-crimson text-[10px]">•</span>
+            <span>Est. 2023</span>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <main className="flex-1 px-5 pb-24 flex flex-col gap-8">
+          <AbbreviationQuiz onBack={handleAbbrevQuizBack} />
+        </main>
+
+        {/* Bottom Navigation */}
+        <nav className="fixed bottom-0 w-full max-w-md bg-newsprint border-t border-ink z-40 pb-safe">
+          <div className="flex justify-between items-end px-6 pt-3 pb-5">
+            <button
+              onClick={handleAbbrevQuizBack}
+              className="flex flex-col items-center gap-1 text-stone hover:text-ink transition-colors group flex-1"
+            >
+              <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400" }}>
+                newspaper
+              </span>
+              <span className="font-sans text-[9px] font-medium tracking-widest uppercase mt-1 group-hover:border-b group-hover:border-stone pb-0.5">Edition</span>
+            </button>
+            <button
+              onClick={() => setShowStatsModal(true)}
+              className="flex flex-col items-center gap-1 text-stone hover:text-ink transition-colors group flex-1"
+            >
+              <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400" }}>
+                trending_up
+              </span>
+              <span className="font-sans text-[9px] font-medium tracking-widest uppercase mt-1 group-hover:border-b group-hover:border-stone pb-0.5">Stats</span>
+            </button>
+            <button
+              onClick={() => setShowSavedCluesModal(true)}
+              className="flex flex-col items-center gap-1 text-stone hover:text-ink transition-colors group flex-1"
+            >
+              <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400" }}>
+                bookmark
+              </span>
+              <span className="font-sans text-[9px] font-medium tracking-widest uppercase mt-1 group-hover:border-b group-hover:border-stone pb-0.5">Saved</span>
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex flex-col items-center gap-1 text-stone hover:text-crimson transition-colors group flex-1"
+            >
+              <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 400" }}>
+                logout
+              </span>
+              <span className="font-sans text-[9px] font-medium tracking-widest uppercase mt-1 group-hover:border-b group-hover:border-stone pb-0.5">Logout</span>
+            </button>
+          </div>
+        </nav>
+
+        <div className="h-20"></div>
+
+        {showStatsModal && (
+          <StatsModal onClose={() => setShowStatsModal(false)} />
+        )}
+        {showSavedCluesModal && (
+          <SavedCluesModal
+            onClose={() => setShowSavedCluesModal(false)}
+            onLoadClue={handleLoadSavedClue}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // Screen 4: Clue Solving
   return (
     <div className="app">
       {/* Masthead */}

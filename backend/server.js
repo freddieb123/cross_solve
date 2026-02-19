@@ -7,6 +7,8 @@ const cluesRouter = require('./routes/clues');
 const authRouter = require('./routes/auth');
 const statsRouter = require('./routes/stats');
 const savedCluesRouter = require('./routes/savedClues');
+const abbreviationsRouter = require('./routes/abbreviations');
+const abbreviationsRouter = require('./routes/abbreviations');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -42,6 +44,8 @@ app.use('/api/clues', cluesRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/stats', statsRouter);
 app.use('/api/saved-clues', savedCluesRouter);
+app.use('/api/abbreviations', abbreviationsRouter);
+app.use('/api/abbreviations', abbreviationsRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -209,4 +209,15 @@ export async function removeSavedClue(clueRowid) {
   return response.data;
 }
 
+// ============ Abbreviations API ============
+
+/**
+ * Get all abbreviation quiz entries
+ * @returns {Promise<{entries: Array<{meaning: string, abbreviations: string[]}>}>}
+ */
+export async function getAbbreviations() {
+  const response = await apiClient.get('/abbreviations');
+  return response.data;
+}
+
 export default apiClient;

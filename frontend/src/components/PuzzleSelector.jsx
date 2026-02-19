@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getPuzzleTypes } from '../utils/api';
 import '../styles/PuzzleSelector.css';
 
-export default function PuzzleSelector({ onSelect, selectedType }) {
+export default function PuzzleSelector({ onSelect, selectedType, onAbbrevQuiz }) {
   const [types, setTypes] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,6 +40,14 @@ export default function PuzzleSelector({ onSelect, selectedType }) {
           </button>
         ))}
       </div>
+
+      <div className="puzzle-selector__divider">
+        <span>or</span>
+      </div>
+
+      <button className="puzzle-button puzzle-button--abbrev" onClick={onAbbrevQuiz}>
+        Practice Abbreviations
+      </button>
     </div>
   );
 }

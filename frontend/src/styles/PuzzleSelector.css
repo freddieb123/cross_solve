@@ -48,10 +48,54 @@
   border-color: #1A1A1A;
 }
 
+.puzzle-selector-divider {
+  border: none;
+  border-top: 1px solid #1A1A1A;
+  margin: 0.5rem 0;
+}
+
 .puzzle-selector.error {
   color: #d32f2f;
   text-align: center;
   padding: 2rem;
+}
+
+.puzzle-selector__divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  color: #787672;
+}
+
+.puzzle-selector__divider::before,
+.puzzle-selector__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #D0CBC1;
+}
+
+.puzzle-selector__divider span {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.puzzle-button--abbrev {
+  width: 100%;
+  background: #F4F1EA;
+  border-style: dashed;
+  color: #787672;
+}
+
+.puzzle-button--abbrev:hover {
+  background: #1B3B6F;
+  border-color: #1B3B6F;
+  color: #F4F1EA;
+  border-style: solid;
 }
 
 @media (max-width: 768px) {
